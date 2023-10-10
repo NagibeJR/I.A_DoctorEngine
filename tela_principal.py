@@ -85,10 +85,10 @@ for pergunta, variavel in perguntas_respostas:
         entrada_idade.grid(column=coluna+1, row=linha, padx=20, pady=(0, 10))
     
     else:
-        radio_sim = Radiobutton(frame_interno, text="Sim", variable=variavel, value=1, font=("Roboto", 13, "bold"), bg="green",fg='white',)
+        radio_sim = Radiobutton(frame_interno, text="Sim", variable=variavel, value=1, font=("Roboto", 13, "bold"), bg="green")
         radio_sim.grid(column=1, row=linha, padx=(10, 0), pady=10, sticky="w")
         
-        radio_nao = Radiobutton(frame_interno, text="Não", variable=variavel, value=0, font=("Roboto", 13, "bold"), bg="red",fg='white')
+        radio_nao = Radiobutton(frame_interno, text="Não", variable=variavel, value=0, font=("Roboto", 13, "bold"), bg="red")
         radio_nao.grid(column=1, row=linha, padx=(80, 0), pady=10, sticky="w")  # Ajuste o padx aqui
     
 
