@@ -1,5 +1,5 @@
 from tkinter import *
-import algoritimo as a
+import KNN as a
 from tkinter import messagebox
 
 def diagnosticar():
