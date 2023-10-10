@@ -24,7 +24,7 @@ box_Idade = IntVar()
 radio_tremores_ou_suor = IntVar()
 radio_dificuldade_de_dormi = IntVar()
 
-janela.title("Fatores de risco para Covid-19")
+janela.title("DR.MCMISSIL DIAGNOSTICANDO SUA ANSIEDADE")
 largura = 1100
 altura = 750
 pos_x = (janela.winfo_screenwidth() // 2) - (largura // 2) 
@@ -34,7 +34,7 @@ janela.geometry(f"{largura}x{altura}+{pos_x}+{pos_y}")
 def on_canvas_configure(event):
     canvas.configure(scrollregion=canvas.bbox("all"))
 
-janela.title("Fatores de risco para Covid-19")
+janela.title("DR.MCMISSIL DIAGNOSTICANDO SUA ANSIEDADE")
 
 frame_principal = Frame(janela, bg="#9DBCD4")
 frame_principal.pack(fill="both", expand=True)
