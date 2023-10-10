@@ -36,20 +36,20 @@ def on_canvas_configure(event):
 
 janela.title("DR.MCMISSIL DIAGNOSTICANDO SUA ANSIEDADE")
 
-frame_principal = Frame(janela, bg="#9DBCD4")
-frame_principal.pack(fill="both", expand=True)
+frame_prin = Frame(janela, bg="#9DBCD4")
+frame_prin.pack(fill="both", expand=True)
 
-canvas = Canvas(frame_principal, bg="#C0C0C0")
+canvas = Canvas(frame_prin, bg="#C0C0C0")
 canvas.pack(side="left", fill="both", expand=True)
 
-scrollbar = Scrollbar(frame_principal, orient="vertical", command=canvas.yview)
+scrollbar = Scrollbar(frame_prin, orient="vertical", command=canvas.yview)
 scrollbar.pack(side="right", fill="y")
 canvas.configure(yscrollcommand=scrollbar.set)
 
-frame_interno = Frame(canvas, bg="#C0C0C0")
-canvas.create_window((0, 0), window=frame_interno, anchor="nw")
+frame_intern = Frame(canvas, bg="#C0C0C0")
+canvas.create_window((0, 0), window=frame_intern, anchor="nw")
 
-titulo1 = Label(frame_interno, 
+titulo1 = Label(frame_intern, 
                 text="DR.MCMISSIL DIAGNOSTICANDO SUA ANSIEDADE",
                 font=("Roboto", 23, "bold"),
                 fg='blue',
@@ -74,21 +74,21 @@ linha = 1
 largura_maxima_coluna = 800
 
 for pergunta, variavel in perguntas_respostas:
-    label_pergunta = Label(frame_interno, text=pergunta, font=("Roboto", 13, "bold"), bg="white", anchor="w")
+    label_pergunta = Label(frame_intern, text=pergunta, font=("Roboto", 13, "bold"), bg="white", anchor="w")
     label_pergunta.grid(column=0, row=linha, padx=(20, 5), pady=10, sticky="e")
     
     if pergunta == "Idade:":
-        label_idade = Label(frame_interno, font=("Roboto", 13, "bold"), bg="#C0C0C0", anchor="w")
+        label_idade = Label(frame_intern, font=("Roboto", 13, "bold"), bg="#C0C0C0", anchor="w")
         label_idade.grid(column=coluna, row=linha+1, padx=20, pady=(0, 5), sticky="w")
         
-        entrada_idade = Entry(frame_interno, textvariable=box_Idade, font=("Roboto", 13, "bold"))
+        entrada_idade = Entry(frame_intern, textvariable=box_Idade, font=("Roboto", 13, "bold"))
         entrada_idade.grid(column=coluna+1, row=linha, padx=20, pady=(0, 10))
     
     else:
-        radio_sim = Radiobutton(frame_interno, text="Sim", variable=variavel, value=1, font=("Roboto", 13, "bold"), bg="green")
+        radio_sim = Radiobutton(frame_intern, text="Sim", variable=variavel, value=1, font=("Roboto", 13, "bold"), bg="green")
         radio_sim.grid(column=1, row=linha, padx=(10, 0), pady=10, sticky="w")
         
-        radio_nao = Radiobutton(frame_interno, text="Não", variable=variavel, value=0, font=("Roboto", 13, "bold"), bg="red")
+        radio_nao = Radiobutton(frame_intern, text="Não", variable=variavel, value=0, font=("Roboto", 13, "bold"), bg="red")
         radio_nao.grid(column=1, row=linha, padx=(80, 0), pady=10, sticky="w")  # Ajuste o padx aqui
     
 
@@ -98,7 +98,7 @@ for pergunta, variavel in perguntas_respostas:
         coluna = 0
         linha += 3
         
-botaoDiagnostico = Button(frame_interno,
+botaoDiagnostico = Button(frame_intern,
                           text='Realizar Diagnóstico',
                           fg='white',
                           bg='blue',
@@ -109,7 +109,7 @@ botaoDiagnostico = Button(frame_interno,
                           )
 botaoDiagnostico.grid(column=0, row=linha, columnspan=3, pady=20, padx=20)
 
-botaoFechar = Button(frame_interno,
+buttonClose = Button(frame_intern,
                      text='Fechar',
                      fg='white',
                      bg='Red',
@@ -118,7 +118,7 @@ botaoFechar = Button(frame_interno,
                      relief="ridge",
                      border=2,
                      )
-botaoFechar.grid(column=0, row=linha+1, columnspan=3, pady=20,padx=20)
+buttonClose.grid(column=0, row=linha+1, columnspan=3, pady=20,padx=20)
 
 canvas.bind("<Configure>", on_canvas_configure)
 
