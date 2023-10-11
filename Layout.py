@@ -25,7 +25,7 @@ dificuldadeDormi = IntVar()
 
 window.title("DR.MCMISSIL DIAGNOSTICANDO SUA ANSIEDADE")
 width = 1100
-height = 750
+height = 870
 pos_x = (window.winfo_screenwidth() // 2) - (width // 2) 
 pos_y = (window.winfo_screenheight() // 2) - (height // 2) 
 window.geometry(f"{width}x{height}+{pos_x}+{pos_y}") 
@@ -45,7 +45,7 @@ scrollbar = Scrollbar(frame_prin, orient="vertical", command=canvas.yview)
 scrollbar.pack(side="right", fill="y")
 canvas.configure(yscrollcommand=scrollbar.set)
 
-frame_intern = Frame(canvas, bg="#C0C0C0")
+frame_intern = Frame(canvas, bg="lavender")
 canvas.create_window((0, 0), window=frame_intern, anchor="nw")
 
 titulo1 = Label(frame_intern, 
@@ -53,6 +53,7 @@ titulo1 = Label(frame_intern,
                 font=("Roboto", 23, "bold"),
                 fg='blue',
                 bg="#C0C0C0",
+                border=20,
                 )
 titulo1.grid(column=0, row=0, columnspan=2, pady=(50, 50), padx=(200, 50), sticky="w") 
 
@@ -73,7 +74,7 @@ line = 1
 maximum_column_width = 800
 
 for pergunta, variavel in perguntas_respostas:
-    label_pergunta = Label(frame_intern, text=pergunta, font=("Roboto", 13, "bold"), bg="white", anchor="w")
+    label_pergunta = Label(frame_intern, text=pergunta, font=("Roboto", 13, "bold"), bg="yellow", anchor="w")
     label_pergunta.grid(column=0, row=line, padx=(20, 5), pady=10, sticky="e")
     
     if pergunta == "Idade:":
@@ -84,10 +85,10 @@ for pergunta, variavel in perguntas_respostas:
         entrada_idade.grid(column=column+1, row=line, padx=20, pady=(0, 10))
     
     else:
-        sim = Radiobutton(frame_intern, text="Sim", variable=variavel, value=1, font=("Roboto", 13, "bold"), bg="green")
+        sim = Radiobutton(frame_intern, text="Sim", variable=variavel, value=1, font=("Roboto", 13, "bold"), bg="lightblue")
         sim.grid(column=1, row=line, padx=(10, 0), pady=10, sticky="w")
         
-        nao = Radiobutton(frame_intern, text="Não", variable=variavel, value=0, font=("Roboto", 13, "bold"), bg="red")
+        nao = Radiobutton(frame_intern, text="Não", variable=variavel, value=0, font=("Roboto", 13, "bold"), bg="lightgray")
         nao.grid(column=1, row=line, padx=(80, 0), pady=10, sticky="w")
 
     column += 2
@@ -103,18 +104,18 @@ buttonDiagnostico = Button(frame_intern,
                           command=diagnosticar,
                           font=("Roboto", 13, "bold"),
                           relief="ridge",
-                          border=2,
+                          border=20,  # Increase the border width for a more rounded appearance
                           )
 buttonDiagnostico.grid(column=0, row=line, columnspan=3, pady=20, padx=20)
 
 buttonClose = Button(frame_intern,
                      text='Fechar',
                      fg='white',
-                     bg='Red',
+                     bg='lightsalmon',
                      command=window.quit,
                      font=("Roboto", 13, "bold"),
                      relief="ridge",
-                     border=2,
+                     border=20,
                      )
 buttonClose.grid(column=0, row=line+1, columnspan=3, pady=20,padx=20)
 
