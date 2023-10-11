@@ -14,7 +14,7 @@ def normalizar(base):
 
 #treinando a rede Knn
 def treinarKNN(atributos,diagnostico):
-    modelo = KNeighborsClassifier(n_neighbors = 7)
+    modelo = KNeighborsClassifier(n_neighbors = 7) # K = 7
     modelo.fit(atributos, diagnostico)
     return modelo
 
