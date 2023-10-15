@@ -1,1 +1,2 @@
-# I.A_PROJECT_2.0
+# I.A_PROJECT_DESGASTE_MOTOR
+Projeto da disciplina inteligência artificial, com intuito de gerar um avaliador de desgaste de motor de um veículo de acordo com as condições do óleo presente.
