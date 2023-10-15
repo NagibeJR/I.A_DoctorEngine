@@ -3,9 +3,9 @@ import skfuzzy as fuzz
 from skfuzzy import control as ctrl
 
 
-quilometro = int(input('Digite um número: '))
-tempo = int(input('Digite um número: '))
-nivel = int(input('Digite um número: '))
+quilometro = int(input('Digite a quilometragem rodada com o oleo [0..5.000]: '))
+tempo = int(input('Digite quantos dias esta usando o oleo [0..365 dias]: '))
+nivel = int(input('Digite o nivel do oleo[0 = abaixo| 1 = medida oky| 2 = acima]: '))
 
 # Variáveis Linguísticas
 quilometragemRodado = ctrl.Antecedent(np.arange(0,5001,1), 'QUILOMETRAGEM RODADO')
