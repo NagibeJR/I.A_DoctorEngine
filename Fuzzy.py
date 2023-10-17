@@ -1,11 +1,27 @@
 import numpy as np
 import skfuzzy as fuzz
 from skfuzzy import control as ctrl
+import tkinter as tk
+from tkinter import Label, Entry, Button
+import matplotlib.pyplot as plt
 
+# Função para calcular o desgaste
+def calcular_desgaste():
+    quilometro = int(entrada_quilometro.get())
+    tempo = int(entrada_tempo.get())
+    nivel = get_selected_nivel()
+    
+    desgaste_simulador.input['QUILOMETRAGEM RODADO'] = quilometro
+    desgaste_simulador.input['TEMPO DE TROCADO'] = tempo
+    desgaste_simulador.input['NIVEL DO OLEO'] = nivel
+    desgaste_simulador.compute()
+    
+    resultado_desgaste = desgaste_simulador.output['DESGASTE']
+    resultado_label.config(text=f"O grau de desgaste é de {resultado_desgaste:.2f}%")
 
-quilometro = int(input('Digite a quilometragem rodada com o oleo [0..5.000]: '))
-tempo = int(input('Digite quantos dias esta usando o oleo [0..365 dias]: '))
-nivel = int(input('Digite o nivel do oleo[0 = abaixo| 1 = medida oky| 2 = acima]: '))
+# Cria uma instância da janela
+janela = tk.Tk()
+janela.title("EngineDoctor")
 
 # Variáveis Linguísticas
 quilometragemRodado = ctrl.Antecedent(np.arange(0,5001,1), 'QUILOMETRAGEM RODADO')
@@ -13,7 +29,7 @@ tempoTrocado = ctrl.Antecedent(np.arange(0,366,1), 'TEMPO DE TROCADO')
 nivelOleo = ctrl.Antecedent(np.arange(0,3,1), 'NIVEL DO OLEO')
 desgaste = ctrl.Consequent(np.arange(0,101,1), 'DESGASTE')
 
-# Conjuntos de Termos Linguísticos (membership function tipo trapezial e triangular)
+# Conjuntos de Termos Linguísticos (membership function tipo trapezoidal e triangular)
 quilometragemRodado['NENHUM'] = fuzz.trapmf(quilometragemRodado.universe, [0,0,0,0])
 quilometragemRodado['POUCO'] = fuzz.trapmf(quilometragemRodado.universe, [1,1,1000,1500])
 quilometragemRodado['MEDIO'] = fuzz.trapmf(quilometragemRodado.universe, [1000,1500,3000,3500])
@@ -31,13 +47,6 @@ desgaste['NENHUM'] = fuzz.trapmf(desgaste.universe, [0,0,0,0])
 desgaste['POUCO'] = fuzz.trapmf(desgaste.universe, [1,1,30,40])
 desgaste['MODERADO'] = fuzz.trapmf(desgaste.universe, [30,40,60,70])
 desgaste['MUITO'] = fuzz.trapmf(desgaste.universe, [60,70,100,100])
-
-quilometragemRodado.view()
-tempoTrocado.view()
-nivelOleo.view()
-desgaste.view()
-
-# Criando a Base de Regras
 
 rule1 = ctrl.Rule(quilometragemRodado['NENHUM'] & tempoTrocado['POUCO'] & nivelOleo['MEDIDA'], desgaste['NENHUM'])
 rule2 = ctrl.Rule(quilometragemRodado['NENHUM'] & tempoTrocado['POUCO'] & nivelOleo['ABAIXO'], desgaste['POUCO'])
@@ -79,24 +88,66 @@ rule34 = ctrl.Rule(quilometragemRodado['MUITO'] & tempoTrocado['MUITO'] & nivelO
 rule35 = ctrl.Rule(quilometragemRodado['MUITO'] & tempoTrocado['MUITO'] & nivelOleo['ABAIXO'], desgaste['MUITO'])
 rule36 = ctrl.Rule(quilometragemRodado['MUITO'] & tempoTrocado['MUITO'] & nivelOleo['ACIMA'], desgaste['MUITO'])
 
-# Criando o Controlador Nebuloso, definindo os Entradas e calculando o Resultado
-
+# Criação do Controlador Nebuloso e Simulação
 desgaste_ctrl = ctrl.ControlSystem([rule1,rule2,rule3,rule4,rule5,rule6,rule7,rule8,rule9,rule10,rule11,rule12,rule13,rule14,rule15,rule16,rule17,rule18,rule19,rule20,rule21,rule22,rule23,rule24,rule25,rule26,rule27,rule28,rule29,rule30,rule31,rule32,rule33,rule34,rule35,rule36])
 desgaste_simulador = ctrl.ControlSystemSimulation(desgaste_ctrl)
 
+# Plot do gráfico
+def exibir_grafico():
+    quilometragemRodado.view(sim=desgaste_simulador)
+    tempoTrocado.view(sim=desgaste_simulador)
+    nivelOleo.view(sim=desgaste_simulador)
+    desgaste.view(sim=desgaste_simulador)
+    plt.show()
 
-# Entrando com alguns valores para quilometragem, tempo de troca e nivel do oleo
-desgaste_simulador.input['QUILOMETRAGEM RODADO'] = quilometro
-desgaste_simulador.input['TEMPO DE TROCADO'] = tempo
-desgaste_simulador.input['NIVEL DO OLEO'] = nivel
+# Cria um frame para organizar os widgets
+frame = tk.Frame(janela)
+frame.pack(padx=50, pady=50)
 
-#Computando o resultado
-desgaste_simulador.compute()
+# Label para o título
+titulo_label = tk.Label(frame, text="EngineDoctor - Diagnóstico de Desgaste do Motor", font=("Helvetica", 16), fg="#D3D3D3")
+titulo_label.pack(side="top", padx=50, pady=50)
 
-# Apresentando Graficamente o Resultado
+# Label e entrada para Quilometragem
+quilometragem_label = tk.Label(frame, text="Quilometragem rodada com o óleo [0Km a 5000 Km]")
+quilometragem_label.pack(pady=5)
+entrada_quilometro = tk.Entry(frame)
+entrada_quilometro.pack(pady=5)
 
-quilometragemRodado.view(sim=desgaste_simulador)
-tempoTrocado.view(sim=desgaste_simulador)
-nivelOleo.view(sim=desgaste_simulador)
-desgaste.view(sim=desgaste_simulador)
-print("O grau de desgaste é de", desgaste_simulador.output['DESGASTE'], "%")
+# Label e entrada para Tempo
+tempo_label = tk.Label(frame, text="Dias de uso do óleo [0 a 365 dias]")
+tempo_label.pack(pady=5)
+entrada_tempo = tk.Entry(frame)
+entrada_tempo.pack(pady=5)
+
+# Label Nível do Óleo
+nivel_label = tk.Label(frame, text="Nível do óleo")
+nivel_label.pack(pady=5)
+
+# Create a variable to store the selected oil level
+selected_nivel = tk.StringVar()
+selected_nivel.set("medida ok")  # Set the default option to "medida ok"
+
+# Create an OptionMenu with options and map them to numeric values
+nivel_options = tk.OptionMenu(frame, selected_nivel, "abaixo", "medida ok", "acima")
+nivel_options.pack(pady=5)
+
+# Function to convert the selected option to a numeric value
+def get_selected_nivel():
+    nivel_mapping = {"abaixo": 0, "medida ok": 1, "acima": 2}
+    return nivel_mapping[selected_nivel.get()]
+
+# Botão para calcular o desgaste
+calcular_botao = tk.Button(frame, text="Calcular Desgaste", command=calcular_desgaste, bg="black", fg="black")
+calcular_botao.pack(pady=10)
+
+# Botão para exibir o gráfico
+exibir_grafico_botao = tk.Button(frame, text="Exibir Gráfico", command=exibir_grafico, bg="black", fg="black")
+exibir_grafico_botao.pack(pady=5)
+
+# Label para exibir o resultado
+resultado_label = tk.Label(frame, text="", font=("Helvetica", 14), fg="#ADD8E6")
+resultado_label.pack(pady=10)
+
+# Inicia o loop principal da interface
+janela.mainloop()
