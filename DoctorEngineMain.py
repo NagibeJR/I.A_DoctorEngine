@@ -34,7 +34,7 @@ def calcular_desgaste():
 
 # Cria uma instância da janela
 janela = tk.Tk()
-janela.title("EngineDoctor")
+janela.title("DoctorEngine")
 
 # Variáveis Linguísticas
 quilometragemRodado = ctrl.Antecedent(np.arange(0, 5001, 1), "QUILOMETRAGEM RODADO")
@@ -128,7 +128,7 @@ frame = tk.Frame(janela)
 frame.pack(padx=50, pady=50)
 
 # Label para o título
-titulo_label = tk.Label(frame, text="EngineDoctor - Diagnóstico de Desgaste do Motor",font=("Helvetica", 20),fg="#1473e6")
+titulo_label = tk.Label(frame, text="DoctorEngine - Diagnóstico de Desgaste do Motor",font=("Helvetica", 20),fg="#1473e6")
 titulo_label.pack(side="top", padx=50, pady=50)
 
 # Label e entrada para Quilometragem
