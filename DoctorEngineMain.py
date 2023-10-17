@@ -6,9 +6,9 @@ import tkinter as tk
 
 # Map the numerical output to linguistic terms
 def map_desgaste(resultado_desgaste):
-    if resultado_desgaste <= 1:
+    if resultado_desgaste < 1:
         return "NENHUM"
-    elif 1 < resultado_desgaste <= 40: 
+    elif 1 <= resultado_desgaste <= 40: 
         return "POUCO"
     elif 40 < resultado_desgaste <= 70:
         return "MODERADO"
