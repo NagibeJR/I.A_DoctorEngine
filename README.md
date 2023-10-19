@@ -16,9 +16,8 @@ Projeto da disciplina inteligência artificial, com intuito de gerar um avaliado
 - [2. Objetivo](#objetivo)
 - [3. Metodologia](#metodologia)
 - [4. Tecnologias](#tecnologias)
-- [5. Resultados](#resultados)
-- [6. Conclusão](#conclusao)
-- [7. Time de desenvolvimento](#autores)
+- [5. Conclusão](#conclusao)
+- [6. Time de desenvolvimento](#autores)
 
 
 <h2 id="contexto">1. Contexto</h2>
@@ -45,13 +44,7 @@ Para o desenvolvimento do projeto, foi utilizado a linguagem de programação Py
 </p>
 
 
-<h2 id="resultados">5. Resultados</h2>
-<p>
-O projeto foi desenvolvido com sucesso, e o avaliador de desgaste de motores de veículos foi criado. O avaliador de desgaste é capaz de fornecer uma avaliação precisa do estado do motor, com base em dados relacionados à quilometragem percorrida e ao tempo de uso do óleo do veículo. O avaliador de desgaste ajudará os usuários a tomar decisões informadas sobre a manutenção preventiva de seus motores, contribuindo assim para a eficiência e longevidade dos veículos.
-</p>
-
-
-<h2 id="conclusao">6. Conclusão</h2>
+<h2 id="conclusao">5. Conclusão</h2>
 <p>
 O projeto foi desenvolvido com sucesso, e o avaliador de desgaste de motores de veículos foi criado. O avaliador de desgaste é capaz de fornecer uma avaliação precisa do estado do motor, com base em dados relacionados à quilometragem percorrida e ao tempo de uso do óleo do veículo. O avaliador de desgaste ajudará os usuários a tomar decisões informadas sobre a manutenção preventiva de seus motores, contribuindo assim para a eficiência e longevidade dos veículos.
 </p>
@@ -63,7 +56,7 @@ O projeto foi desenvolvido com sucesso, e o avaliador de desgaste de motores de 
 </ul>
 </p> -->
 
-<h2 id="autores">7. Time de desenvolvimento</h2>
+<h2 id="autores">6. Time de desenvolvimento</h2>
 
 
   <table align="center">
