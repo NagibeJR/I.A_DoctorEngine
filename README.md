@@ -41,8 +41,15 @@ Para o desenvolvimento do projeto, foi utilizado o método de desenvolvimento de
 
 <h2 id="tecnologias">4. Tecnologias</h2>
 <p>
-Para o desenvolvimento do projeto, foi utilizado a linguagem de programação Python, com a biblioteca Pandas para manipulação de dados e a biblioteca Scikit-learn para a criação do modelo de aprendizado de máquina.
+Para o desenvolvimento do projeto, foi utilizado a linguagem de programação Python, com as seguintes bibliotecas:
 </p>
+<ul>
+  <li>NumPy</li>
+  <li>scikit-fuzzy (fuzz)</li>
+  <li>scikit-fuzzy (control)</li>
+  <li>tkinter</li>
+</ul>
+
 
 
 <h2 id="resultados">5. Resultados</h2>
